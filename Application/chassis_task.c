@@ -117,7 +117,7 @@ void chassis_task(void *pvParameters)
         chassis_set_control(&chassis_move);
 
         BSP_Send_Msg_to_SideBoard(&hcan1, &CenterBoard_CMD_ID, CenterBoard_To_SideBoard_Data);
-        BSP_Send_Msg_to_SideBoard(&hcan2, &CenterBoard_CMD_ID, CenterBoard_To_SideBoard_Data);
+        BSP_Send_Msg_to_SideBoard(&hcan2, &CenterBoard_CMD_ID, CenterBoard_To_SideBoard_Data);  //send message
 
         //OS delay
         vTaskDelay(CHASSIS_CONTROL_TIME_MS);
