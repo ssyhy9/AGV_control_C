@@ -1,0 +1,95 @@
+/*************************************************
+ * Public Constants
+ *************************************************/
+
+#define BUZZER_NOTE_B0  31
+#define BUZZER_NOTE_C1  33
+#define BUZZER_NOTE_CS1 35
+#define BUZZER_NOTE_D1  37
+#define BUZZER_NOTE_DS1 39
+#define BUZZER_NOTE_E1  41
+#define BUZZER_NOTE_F1  44
+#define BUZZER_NOTE_FS1 46
+#define BUZZER_NOTE_G1  49
+#define BUZZER_NOTE_GS1 52
+#define BUZZER_NOTE_A1  55
+#define BUZZER_NOTE_AS1 58
+#define BUZZER_NOTE_B1  62
+#define BUZZER_NOTE_C2  65
+#define BUZZER_NOTE_CS2 69
+#define BUZZER_NOTE_D2  73
+#define BUZZER_NOTE_DS2 78
+#define BUZZER_NOTE_E2  82
+#define BUZZER_NOTE_F2  87
+#define BUZZER_NOTE_FS2 93
+#define BUZZER_NOTE_G2  98
+#define BUZZER_NOTE_GS2 104
+#define BUZZER_NOTE_A2  110
+#define BUZZER_NOTE_AS2 117
+#define BUZZER_NOTE_B2  123
+#define BUZZER_NOTE_C3  131
+#define BUZZER_NOTE_CS3 139
+#define BUZZER_NOTE_D3  147
+#define BUZZER_NOTE_DS3 156
+#define BUZZER_NOTE_E3  165
+#define BUZZER_NOTE_F3  175
+#define BUZZER_NOTE_FS3 185
+#define BUZZER_NOTE_G3  196
+#define BUZZER_NOTE_GS3 208
+#define BUZZER_NOTE_A3  220
+#define BUZZER_NOTE_AS3 233
+#define BUZZER_NOTE_B3  247
+#define BUZZER_NOTE_C4  262
+#define BUZZER_NOTE_CS4 277
+#define BUZZER_NOTE_D4  294
+#define BUZZER_NOTE_DS4 311
+#define BUZZER_NOTE_E4  330
+#define BUZZER_NOTE_F4  349
+#define BUZZER_NOTE_FS4 370
+#define BUZZER_NOTE_G4  392
+#define BUZZER_NOTE_GS4 415
+#define BUZZER_NOTE_A4  440
+#define BUZZER_NOTE_AS4 466
+#define BUZZER_NOTE_B4  494
+#define BUZZER_NOTE_C5  523
+#define BUZZER_NOTE_CS5 554
+#define BUZZER_NOTE_D5  587
+#define BUZZER_NOTE_DS5 622
+#define BUZZER_NOTE_E5  659
+#define BUZZER_NOTE_F5  698
+#define BUZZER_NOTE_FS5 740
+#define BUZZER_NOTE_G5  784
+#define BUZZER_NOTE_GS5 831
+#define BUZZER_NOTE_A5  880
+#define BUZZER_NOTE_AS5 932
+#define BUZZER_NOTE_B5  988
+#define BUZZER_NOTE_C6  1047
+#define BUZZER_NOTE_CS6 1109
+#define BUZZER_NOTE_D6  1175
+#define BUZZER_NOTE_DS6 1245
+#define BUZZER_NOTE_E6  1319
+#define BUZZER_NOTE_F6  1397
+#define BUZZER_NOTE_FS6 1480
+#define BUZZER_NOTE_G6  1568
+#define BUZZER_NOTE_GS6 1661
+#define BUZZER_NOTE_A6  1760
+#define BUZZER_NOTE_AS6 1865
+#define BUZZER_NOTE_B6  1976
+#define BUZZER_NOTE_C7  2093
+#define BUZZER_NOTE_CS7 2217
+#define BUZZER_NOTE_D7  2349
+#define BUZZER_NOTE_DS7 2489
+#define BUZZER_NOTE_E7  2637
+
+//Folowing note are not supported
+// #define BUZZER_NOTE_F7  2794
+// #define BUZZER_NOTE_FS7 2960
+// #define BUZZER_NOTE_G7  3136
+// #define BUZZER_NOTE_GS7 3322
+// #define BUZZER_NOTE_A7  3520
+// #define BUZZER_NOTE_AS7 3729
+// #define BUZZER_NOTE_B7  3951
+// #define BUZZER_NOTE_C8  4186
+// #define BUZZER_NOTE_CS8 4435
+// #define BUZZER_NOTE_D8  4699
+// #define BUZZER_NOTE_DS8 4978
