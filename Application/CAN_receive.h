@@ -72,7 +72,7 @@ typedef struct {
 extern void APP_Get_CAN1_Data(CAN_RxHeaderTypeDef *Header, uint8_t DATA[]);
 extern void APP_Get_CAN2_Data(CAN_RxHeaderTypeDef *Header, uint8_t DATA[]);
 
-extern void BSP_Send_Msg_to_SideBoard(CAN_HandleTypeDef *hcan, uint16_t *CommandID, CenterBoard_CMD Command[]);
+extern void BSP_Send_Msg_to_SideBoard(CAN_HandleTypeDef *hcan, uint16_t CommandID, CenterBoard_CMD Command[]);
 extern void APP_Get_SideBoard_Data(uint8_t MotorIdx, uint16_t SideBoardIdx, uint8_t CAN_DATA[]) ;
 
 #endif

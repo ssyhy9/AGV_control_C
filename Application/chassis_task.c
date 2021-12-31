@@ -9,7 +9,7 @@
   *  V1.1.0     Nov-11-2019     RM              1. add chassis power control
   *  V2.0.0     Jan-26-2021     YW              1. modify to fit this project
   *  V3.0.0     Oct-27-2021     SPY             1. AGV control
-  *
+  *	 V4.0.0     Dec-30-2021     YHY             1. MainBoard(with CAN)
   @verbatim
   ==============================================================================
 
@@ -74,8 +74,6 @@ void chassis_rc_to_control_vector(chassis_move_t *chassis_move_rc_to_vector);
 
 static void chassis_set_control(chassis_move_t *chassis_move_control);
 
-static void chassis_control_loop(chassis_move_t *chassis_move_control_loop);
-
 static int32_t convert_angle_to_motor_ecd(float32_t input_angle);
 
 #if INCLUDE_uxTaskGetStackHighWaterMark
@@ -113,12 +111,13 @@ void chassis_task(void *pvParameters)
         //chassis data update
         chassis_feedback_update(&chassis_move);
 
+        chassis_rc_to_control_vector(&chassis_move);
+
         //set chassis control set-point
         chassis_set_control(&chassis_move);
 
-        BSP_Send_Msg_to_SideBoard(&hcan1, &CenterBoard_CMD_ID, CenterBoard_To_SideBoard_Data);
-        BSP_Send_Msg_to_SideBoard(&hcan2, &CenterBoard_CMD_ID, CenterBoard_To_SideBoard_Data);  //send message
-
+        BSP_Send_Msg_to_SideBoard(&hcan1, CenterBoard_CMD_ID, CenterBoard_To_SideBoard_Data);
+        BSP_Send_Msg_to_SideBoard(&hcan2, CenterBoard_CMD_ID, CenterBoard_To_SideBoard_Data);  //send message
         //OS delay
         vTaskDelay(CHASSIS_CONTROL_TIME_MS);
 
@@ -297,11 +296,6 @@ static void chassis_set_control(chassis_move_t *chassis_move_control)
 
     		chassis_move_control->chassis_board[i].wheel_dir_flag = 1;
 
-//    		typedef struct {
-//    			int16_t CurrentSet_Ang;
-//    			int16_t CurrentSet_Spd;
-//    		} CenterBoard_CMD;
-//    		CenterBoard_CMD CenterBoard_To_SideBoard_Data[4];
     		CenterBoard_To_SideBoard_Data[i].CurrentSet_Spd = chassis_move_control->chassis_board[i].speed_set;
     		CenterBoard_To_SideBoard_Data[i].CurrentSet_Ang = chassis_move_control->chassis_board[i].direction_wheel_angle_set;
     	}

@@ -39,44 +39,44 @@ Wheel_Board_Msg CenterBoard;
  * @retval:       None
  */
 
-//void APP_Get_CAN1_Data(CAN_RxHeaderTypeDef *Header, uint8_t DATA[]) {
-//	CenterBoard_CMD Command[];
-//
-//	switch (Header->StdId) {
-//	case LeftUpper_Spd_ID:
-//	case LeftUpper_Ang_ID: {
-////		APP_Send_Msg_to_SideBoard(hcan1, LeftUpper_Spd_ID, Command[]);
-////		APP_Send_Msg_to_SideBoard(hcan1, LeftUpper_Ang_ID, Command[]);
-//		APP_Get_SideBoard_Data((Header->StdId - LeftUpper_Spd_ID), 0, DATA);
-//		break;
-//	}
-//	case LeftLower_Spd_ID:
-//	case LeftLower_Ang_ID: {
-//		APP_Get_SideBoard_Data((Header->StdId - LeftLower_Spd_ID), 1, DATA);
-//		break;
-//	}
-//	default:
-//		break;
-//	}
-//}
+void APP_Get_CAN1_Data(CAN_RxHeaderTypeDef *Header, uint8_t DATA[]) {
+	CenterBoard_CMD Command[4];
 
-//void APP_Get_CAN2_Data(CAN_RxHeaderTypeDef *Header, uint8_t DATA[]) {
-//	switch (Header->StdId) {
-//	case RightUpper_Spd_ID:
-//	case RightUpper_Ang_ID:
-//	{
-//		APP_Get_SideBoard_Data((Header->StdId - RightUpper_Spd_ID), 2, DATA);
-//		break;
-//	}
-//	case RightLower_Spd_ID:
-//	case RightLower_Ang_ID: {
-//		APP_Get_SideBoard_Data((Header->StdId - RightLower_Spd_ID), 3, DATA);
-//		break;
-//	}
-//	default:
-//		break;
-//	}
-//}
+	switch (Header->StdId) {
+	case LeftUpper_Spd_ID:
+	case LeftUpper_Ang_ID: {
+//		APP_Send_Msg_to_SideBoard(hcan1, LeftUpper_Spd_ID, Command[]);
+//		APP_Send_Msg_to_SideBoard(hcan1, LeftUpper_Ang_ID, Command[]);
+		APP_Get_SideBoard_Data((Header->StdId - LeftUpper_Spd_ID), 0, DATA);
+		break;
+	}
+	case LeftLower_Spd_ID:
+	case LeftLower_Ang_ID: {
+		APP_Get_SideBoard_Data((Header->StdId - LeftLower_Spd_ID), 1, DATA);
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+void APP_Get_CAN2_Data(CAN_RxHeaderTypeDef *Header, uint8_t DATA[]) {
+	switch (Header->StdId) {
+	case RightUpper_Spd_ID:
+	case RightUpper_Ang_ID:
+	{
+		APP_Get_SideBoard_Data((Header->StdId - RightUpper_Spd_ID), 2, DATA);
+		break;
+	}
+	case RightLower_Spd_ID:
+	case RightLower_Ang_ID: {
+		APP_Get_SideBoard_Data((Header->StdId - RightLower_Spd_ID), 3, DATA);
+		break;
+	}
+	default:
+		break;
+	}
+}
 
 
 void APP_Get_SideBoard_Data(uint8_t MotorIdx, uint16_t SideBoardIdx, uint8_t CAN_DATA[]) {
@@ -86,13 +86,14 @@ void APP_Get_SideBoard_Data(uint8_t MotorIdx, uint16_t SideBoardIdx, uint8_t CAN
 	CenterBoard.MotorRxMsgRaw[MotorIdx][SideBoardIdx].TemperatureRaw = (CAN_DATA[6] << 8)+ CAN_DATA[7];
 }
 
-void BSP_Send_Msg_to_SideBoard(CAN_HandleTypeDef *hcan, uint16_t *CommandID, CenterBoard_CMD Command[]) {
+
+void BSP_Send_Msg_to_SideBoard(CAN_HandleTypeDef *hcan, uint16_t CommandID, CenterBoard_CMD Command[]) {
 	uint32_t send_mail_box;
 	CAN_TxHeaderTypeDef TxHeader;
 	uint8_t DATA[8] = { 0 };
 
 	//Header Information
-	TxHeader.StdId = *CommandID;//0x3FF
+	TxHeader.StdId = CommandID;//0x3FF
 	TxHeader.IDE = CAN_ID_STD;
 	TxHeader.RTR = CAN_RTR_DATA;
 	TxHeader.DLC = 0x08;
@@ -125,4 +126,3 @@ void BSP_Send_Msg_to_SideBoard(CAN_HandleTypeDef *hcan, uint16_t *CommandID, Cen
 
 	HAL_CAN_AddTxMessage(hcan, &TxHeader, DATA, &send_mail_box);
 }
-
